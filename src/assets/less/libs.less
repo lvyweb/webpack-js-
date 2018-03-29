@@ -1,0 +1,19 @@
+@import "../../../node_modules/bootstrap/less/bootstrap.less";
+
+@grid-columns: 10; //设置主栅格，比如现在主栅格是10格
+
+@btn-default-color: #2D6EE1;
+
+@import "mixins/grid-framework.less";
+.make-flex-grid-columns(12);  //设置与10格并存的12格
+
+//12格的媒体查询
+@media (min-width: @screen-sm-min) { 
+	.make-flex-grid(12, sm);
+}
+@media (min-width: @screen-md-min) {
+	.make-flex-grid(12, md);
+	}
+@media (min-width: @screen-lg-min) {
+	.make-flex-grid(12, lg);
+}
