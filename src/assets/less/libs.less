@@ -2,8 +2,6 @@
 
 @grid-columns: 10; //设置主栅格，比如现在主栅格是10格
 
-@btn-default-color: #2D6EE1;
-
 @import "mixins/grid-framework.less";
 .make-flex-grid-columns(12);  //设置与10格并存的12格
 
@@ -13,7 +11,28 @@
 }
 @media (min-width: @screen-md-min) {
 	.make-flex-grid(12, md);
-	}
+}
 @media (min-width: @screen-lg-min) {
 	.make-flex-grid(12, lg);
 }
+
+@main-blue:#2D6EE1; //主题颜色
+@brand-success:@main-blue; //btn-success按钮的重置
+@brand-info:#fff; //btn-info按钮的重置
+@btn-info-color:@main-blue;
+@btn-info-border:@main-blue;
+@dropdown-link-hover-bg:transparent;//下拉菜单
+@dropdown-link-hover-color:@main-blue;
+
+@pagination-color:#333; //分页
+@pagination-disabled-color:#ccc;
+
+@table-border-color:#eee;//表格
+table thead{
+	background-color: #E1EAFB;
+}
+@table-bg-hover:#fff;
+.table-hover > tbody > tr:hover{
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+

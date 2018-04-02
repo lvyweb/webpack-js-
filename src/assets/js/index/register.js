@@ -1,3 +1,4 @@
+require('../../css/index/register.css');
 var registerjs = {
   sayHello:function(){
     console.log('register.js')

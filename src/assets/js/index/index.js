@@ -1,4 +1,10 @@
+require('../../css/index/index.css');
+$('body').css('backgroundColor','#f2f2f2');
+ $("#myTab a").click(function(e){
+        e.preventDefault();
+        $(this).tab("show");
+  });
 
-require("../../css/index.css");
-console.log('进入indexjs了=');
+
+console.log('进入index.js了')
 console.log($('h1').html()+"我是index.js输出的");

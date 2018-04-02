@@ -1,5 +1,4 @@
 // 最终这个配置文件 是由node去解析
-
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,23 +6,19 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   // 入口文件目录
   entry:{
+    app:path.join(__dirname, 'src/assets/js/app.js'),
     plugs:['jquery','bootstrap'],
-    common:'./src/assets/js/common/common.js',
-    index:'./src/assets/js/index/index.js',
-    register:'./src/assets/js/index/register.js'
   },
   output:{  
     // 输出的文件目录
     path: path.join(__dirname, 'dist/resource'),
     filename:'js/[name].bundle.js',
+    // publicPath: './dist/resource/',
+    publicPath: '/learn/dist/resource/',
+    chunkFilename: 'js/[name].chunk.js',
   },
   module:{
    rules:[ 
-        // {
-        //   test:/\.css$/, 
-        //   exclude:path.join(__dirname,'node_module'),
-        //   loader:'style-loader!css-loader'
-        // },
         {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
@@ -78,31 +73,26 @@ module.exports = {
         _:"lodash"//lodash
     }),
     // 要使用webpack自的插件来分离第三方包
-    new webpack.optimize.CommonsChunkPlugin(
-      {
-        // 第一个参数，就是我们在entry写的一个属性名
-      // webpack会自动读取对应的值，找到相应的包
-      name: 'plugs',
-      // 第二个参数，是第三方包单独打包后生成的文件名
-      filename: 'js/vender.js'
+    new webpack.optimize.CommonsChunkPlugin({
+     
+          name: 'plugs',
+          filename: 'js/vender.js'
+        // name: 'vendor',
+        // minChunks: ({ resource }) => (
+        //     resource &&
+        //     resource.indexOf('node_modules') >= 0 &&
+        //     resource.match(/\.js$/)
+        // )
     }),
-    new HtmlWebpackPlugin({//简化了html文件的创建，以便为webpack包提供服务。
-        filename:'html/index.html',//处理dirname路径的问题 ，这里等同于'../dist/index.html'
-        template:'./src/templates/index.html',
-        chunks:['plugs','common','index']//选择加载的css和js,模块名对应上面entry接口的名称
-   }),
-   new HtmlWebpackPlugin({
-       filename:'html/register.html',
-       template:'./src/templates/register.html',
-       chunks:['plugs','common','register']
-   }),
+   
   new ExtractTextPlugin('css/[name].[chunkhash].min.css'),
 
-    
-    
-    // 这个压缩代码的插件!
-    // new webpack.optimize.UglifyJsPlugin({
-    // })
+
+
+
+
+
+
   ]
 
 }
